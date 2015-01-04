@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 using System.Windows.Navigation;
 using Windows.Phone.Storage.SharedAccess;
 
-namespace AAD_Client_WP8
+namespace Mojio_Client_WP8
 {
     class UriMapper : UriMapperBase
     {

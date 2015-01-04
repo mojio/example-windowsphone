@@ -7,7 +7,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using AAD_Client_WP8.Resources;
+using Mojio_Client_WP8.Resources;
 using Newtonsoft.Json.Linq;
 using Newtonsoft.Json;
 using System.Text;
@@ -17,7 +17,7 @@ using Windows.Phone.Storage.SharedAccess;
 using Windows.Storage;
 using System.IO;
 
-namespace AAD_Client_WP8
+namespace Mojio_Client_WP8
 {
     public partial class MainPage : PhoneApplicationPage
     {
