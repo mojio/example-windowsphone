@@ -63,16 +63,20 @@
             </StackPanel>
             <StackPanel Name="spResults" Visibility="Visible">
                 <TextBlock>Access Token</TextBlock>
-                <ScrollViewer Height="120">
+                <ScrollViewer Height="50">
                     <TextBox Name="txtAccess" Text="[none]" FontSize="16" FontFamily="Consolas" AcceptsReturn="True" TextWrapping="Wrap"/>
                 </ScrollViewer>                
                 <TextBlock>Refresh Token</TextBlock>
-                <ScrollViewer Height="120">
-                    <TextBox Name="txtRefresh" Text="[none]" FontSize="16" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap"/>
+                <ScrollViewer Height="50">
+                    <TextBox Name="txtRefresh" Text="[none]" FontSize="16" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap" RenderTransformOrigin="0.499,0.719"/>
                 </ScrollViewer>
-                <TextBlock>ID Token</TextBlock>
+                <TextBlock>User</TextBlock>
+                <ScrollViewer Height="130">
+                    <TextBox Name="txtUser" Text="[none]" FontSize="16" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap"/>
+                </ScrollViewer>
+                <TextBlock>Vehicles</TextBlock>
                 <ScrollViewer Height="200">
-                    <TextBox Name="txtID" Text="[none]" FontSize="16" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap"/>
+                    <TextBox Name="txtVehicles" Text="[none]" FontSize="16" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap"/>
                 </ScrollViewer>
             </StackPanel>
         </Grid>

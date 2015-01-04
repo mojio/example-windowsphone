@@ -77,7 +77,6 @@ namespace AAD_Client_WP8
         // hit the endpoint and return the results
         private async Task<string> RequestToken(string code)
         {
-            
             HttpClient client = new HttpClient();
             HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Format("{0}/v1/login/{1}?id={2}",
                 app.Authority, app.ClientID, code));
@@ -85,14 +84,7 @@ namespace AAD_Client_WP8
             HttpResponseMessage response = await client.SendAsync(request);
             string responseString = await response.Content.ReadAsStringAsync();
             var token = JObject.Parse(responseString)["_id"].ToString();
-            //MojioClient client = new MojioClient(new Guid("f201b929-d28c-415d-9b71-8112532301cb"),
-            //                             new Guid("2ef80a7a-780d-41c1-8a02-13a286f11a23"),
-            //                             new Guid(code),
-            //                             MojioClient.Live // or MojioClient.Live
-            //                         );
-            //EventWaitHandle Wait = new AutoResetEvent(false);
 
-            // *****************
             MojioClient mojioClient = new MojioClient();
             Guid codeguid = new Guid(token);
             await mojioClient.BeginAsync(new Guid(app.ClientID),
@@ -100,21 +92,36 @@ namespace AAD_Client_WP8
                                     codeguid
                                    );
 
-            //await client.SetUserAsync("zaneousryan", "SilverSalmon1");
-            ////await client.SetUserAsync("anonymous", "Password007");
-
             var task = mojioClient.GetCurrentUserAsync();
-            responseString = await task.ContinueWith(t =>
+
+            responseString = "{\"access_token\": \"" + code + "\",";
+            responseString += "\"refresh_token\": \"" + token + "\",";
+            responseString += "\"id_token\": \"" + token + "\",";
+            responseString += "\"user\": ";
+            responseString += await task.ContinueWith(t =>
             {
                 if (t.IsFaulted)
                     return "Error: " + t.Exception.InnerException.Message;
                 else if (t.IsCanceled)
                     return "Cancelled";
                 else
-                {
                     return Newtonsoft.Json.JsonConvert.SerializeObject(t.Result);
-                }
             });
+
+            var task2 = mojioClient.UserVehiclesAsync(task.Result.Id);
+            responseString += ", \"vehicles\": ";
+
+            responseString += await task2.ContinueWith(t =>
+            {
+                if (t.IsFaulted)
+                    return "Error: " + t.Exception.InnerException.Message;
+                else if (t.IsCanceled)
+                    return "Cancelled";
+                else
+                    return Newtonsoft.Json.JsonConvert.SerializeObject(t.Result);
+            });
+            responseString += " }";
+
             return responseString;
         }
 

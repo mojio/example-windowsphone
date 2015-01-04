@@ -97,7 +97,8 @@ namespace AAD_Client_WP8
                 {
                     txtAccess.Text = (string)jo["access_token"];
                     txtRefresh.Text = (string)jo["refresh_token"];
-                    txtID.Text = DecodeIdToken((string)jo["id_token"]);
+                    txtUser.Text = (string)jo["user"].ToString(Formatting.Indented);
+                    txtVehicles.Text = (string)jo["vehicles"].ToString(Formatting.Indented); 
                 }
                 catch
                 { 
@@ -159,7 +160,7 @@ namespace AAD_Client_WP8
                 //                  txtAuthority.Text, txtClientID.Text, txtRedirectUri.Text, txtResource.Text) :
                 String.Format(@"{{ ""authority"" : ""{0}"",""clientid"" : ""{1}"",""redirecturi"" : ""{2}""}}", 
                                   txtAuthority.Text, txtClientID.Text, txtRedirectUri.Text) :
-                String.Format(@"{{ ""access_token"" : ""{0}"",""refresh_token"" : ""{1}"",""id"" : ""{2}"" }}", txtAccess.Text, txtRefresh.Text, txtID.Text);
+                String.Format(@"{{ ""access_token"" : ""{0}"",""refresh_token"" : ""{1}"",""user"" : ""{2}"", ""vehicles"" : ""{3}"" }}", txtAccess.Text, txtRefresh.Text, txtUser.Text, txtVehicles.Text);
             Clipboard.SetText(toBeCopied);
         }       
     }
