@@ -51,13 +51,14 @@
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
             <StackPanel Name="spTOkenParamsForm" Visibility="Collapsed">
                 <TextBlock>Authority</TextBlock>
-                <TextBox Name="txtAuthority" Text="http://api.moj.io"></TextBox>
+                <TextBox Name="txtAuthority" Text="https://api.moj.io"></TextBox>
                 <TextBlock>ClientID</TextBlock>
                 <TextBox Name="txtClientID" Text="f201b929-d28c-415d-9b71-8112532301cb"></TextBox>
-                <TextBlock>Resource</TextBlock>
-                <TextBox Name="txtResource" Text="Full"></TextBox>
+                <!--<TextBlock>Resource</TextBlock>
+                <TextBox Name="txtResource" Text="Full"></TextBox>-->
                 <TextBlock>RedirectUri</TextBlock>
-                <TextBox Name="txtRedirectUri" Text="urn:ietf:wg:oauth:2.0:oob"></TextBox>                
+                <!--<TextBox Name="txtRedirectUri" Text="urn:ietf:wg:oauth:2.0:oob"></TextBox>-->
+                <TextBox Name="txtRedirectUri" Text="urn:mojio:oauth:2.0:completion"></TextBox>
                 <Button Name="btnSignIn" Click="btnSignIn_Click" Width="200" HorizontalAlignment="Right" >Get Token >></Button>
             </StackPanel>
             <StackPanel Name="spResults" Visibility="Visible">

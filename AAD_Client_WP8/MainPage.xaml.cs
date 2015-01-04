@@ -60,7 +60,7 @@ namespace AAD_Client_WP8
                         JObject jo = JsonConvert.DeserializeObject(filetext) as JObject;
 
                         txtAuthority.Text = (string)jo["authority"];
-                        txtResource.Text = (string)jo["resource"];
+                        //txtResource.Text = (string)jo["resource"];
                         txtClientID.Text = (string)jo["clientid"];
                         txtRedirectUri.Text = (string)jo["redirecturi"];
                         spTOkenParamsForm.Visibility = Visibility.Visible;
@@ -133,7 +133,7 @@ namespace AAD_Client_WP8
             app.RedirectUri = txtRedirectUri.Text;
             app.Authority = txtAuthority.Text;
             app.ClientID = txtClientID.Text;
-            app.Resource = txtResource.Text;
+            //app.Resource = txtResource.Text;
         }
 
         // trigger the request flow
@@ -155,8 +155,10 @@ namespace AAD_Client_WP8
         private void Copy_Click(object sender, EventArgs e)
         {
             string toBeCopied = (spTOkenParamsForm.Visibility == Visibility.Visible) ?
-                String.Format(@"{{ ""authority"" : ""{0}"",""clientid"" : ""{1}"",""redirecturi"" : ""{2}"",""resource"" : ""{3}""}}", 
-                                  txtAuthority.Text, txtClientID.Text, txtRedirectUri.Text, txtResource.Text) :
+                //String.Format(@"{{ ""authority"" : ""{0}"",""clientid"" : ""{1}"",""redirecturi"" : ""{2}"",""resource"" : ""{3}""}}", 
+                //                  txtAuthority.Text, txtClientID.Text, txtRedirectUri.Text, txtResource.Text) :
+                String.Format(@"{{ ""authority"" : ""{0}"",""clientid"" : ""{1}"",""redirecturi"" : ""{2}""}}", 
+                                  txtAuthority.Text, txtClientID.Text, txtRedirectUri.Text) :
                 String.Format(@"{{ ""access_token"" : ""{0}"",""refresh_token"" : ""{1}"",""id"" : ""{2}"" }}", txtAccess.Text, txtRefresh.Text, txtID.Text);
             Clipboard.SetText(toBeCopied);
         }       

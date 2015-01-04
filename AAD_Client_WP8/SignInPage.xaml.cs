@@ -13,6 +13,7 @@ using System.Text;
 using System.Net.Http;
 using System.Threading.Tasks;
 using Mojio.Client;
+using System.Text.RegularExpressions;
 
 namespace AAD_Client_WP8
 {
@@ -33,7 +34,7 @@ namespace AAD_Client_WP8
             base.OnNavigatedTo(e);
 
             string authURL = string.Format(
-                "{0}/OAuth2/authorize?response_type=code&client_id={1}&redirect_uri={2}",
+                "{0}/OAuth2/authorize?response_type=token&client_id={1}&redirect_uri={2}",
                 app.Authority,
                
                 app.ClientID,
@@ -52,7 +53,14 @@ namespace AAD_Client_WP8
             string returnURL = e.Uri.ToString();
             if (returnURL.StartsWith(app.RedirectUri))
             {
-                string code = e.Uri.Query.Remove(0, 6);
+                Regex regex = new Regex(@"access_token=([0-9a-f-]{36})");
+                Match match = regex.Match(returnURL);
+                if (match.Success)
+                {
+                    Console.WriteLine(match.Value);
+                }
+                string[] words = match.Value.Split('=');
+                string code = words[1];
                 e.Cancel = true;
                 myBrowser.Visibility = System.Windows.Visibility.Collapsed;
 
@@ -69,6 +77,14 @@ namespace AAD_Client_WP8
         // hit the endpoint and return the results
         private async Task<string> RequestToken(string code)
         {
+            
+            HttpClient client = new HttpClient();
+            HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Get, string.Format("{0}/v1/login/{1}?id={2}",
+                app.Authority, app.ClientID, code));
+;
+            HttpResponseMessage response = await client.SendAsync(request);
+            string responseString = await response.Content.ReadAsStringAsync();
+            var token = JObject.Parse(responseString)["_id"].ToString();
             //MojioClient client = new MojioClient(new Guid("f201b929-d28c-415d-9b71-8112532301cb"),
             //                             new Guid("2ef80a7a-780d-41c1-8a02-13a286f11a23"),
             //                             new Guid(code),
@@ -76,17 +92,19 @@ namespace AAD_Client_WP8
             //                         );
             //EventWaitHandle Wait = new AutoResetEvent(false);
 
-            MojioClient client = new MojioClient();
-            string secretKey = "f0927a0a-386b-4148-be8d-5ffd7468ea6b";
-            await client.BeginAsync(new Guid("f201b929-d28c-415d-9b71-8112532301cb"),
-                                    new Guid(secretKey),
-                                    new Guid(code)
+            // *****************
+            MojioClient mojioClient = new MojioClient();
+            Guid codeguid = new Guid(token);
+            await mojioClient.BeginAsync(new Guid(app.ClientID),
+                                    Guid.Empty,
+                                    codeguid
                                    );
 
-            await client.SetUserAsync("anonymous", "Password007");
-    
-            var task = client.GetCurrentUserAsync();
-            string responseString = await task.ContinueWith(t =>
+            //await client.SetUserAsync("zaneousryan", "SilverSalmon1");
+            ////await client.SetUserAsync("anonymous", "Password007");
+
+            var task = mojioClient.GetCurrentUserAsync();
+            responseString = await task.ContinueWith(t =>
             {
                 if (t.IsFaulted)
                     return "Error: " + t.Exception.InnerException.Message;
@@ -94,19 +112,9 @@ namespace AAD_Client_WP8
                     return "Cancelled";
                 else
                 {
-                    return t.Result.Email;
+                    return Newtonsoft.Json.JsonConvert.SerializeObject(t.Result);
                 }
             });
-            //HttpClient client = new HttpClient();
-            //HttpRequestMessage request = new HttpRequestMessage(HttpMethod.Post, string.Format("{0}/oauth2/token", app.Authority));
-            //string tokenreq = string.Format(
-            //        "grant_type=authorization_code&code={0}&client_id={1}&redirect_uri={2}",
-            //        code,
-            //        app.ClientID,
-            //        HttpUtility.UrlEncode(app.RedirectUri));
-            //request.Content = new StringContent(tokenreq, Encoding.UTF8, "application/x-www-form-urlencoded");
-            //HttpResponseMessage response = await client.SendAsync(request);
-            //string responseString = await response.Content.ReadAsStringAsync();
             return responseString;
         }
 
