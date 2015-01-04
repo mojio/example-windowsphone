@@ -78,7 +78,10 @@ namespace AAD_Client_WP8
 
             MojioClient client = new MojioClient();
             string secretKey = "f0927a0a-386b-4148-be8d-5ffd7468ea6b";
-            await client.BeginAsync(new System.Guid(code), new System.Guid(secretKey));
+            await client.BeginAsync(new Guid("f201b929-d28c-415d-9b71-8112532301cb"),
+                                    new Guid(secretKey),
+                                    new Guid(code)
+                                   );
     
             var task = client.GetCurrentUserAsync();
             string responseString = await task.ContinueWith(t =>
