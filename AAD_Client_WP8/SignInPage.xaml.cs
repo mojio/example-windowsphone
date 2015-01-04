@@ -82,6 +82,8 @@ namespace AAD_Client_WP8
                                     new Guid(secretKey),
                                     new Guid(code)
                                    );
+
+            await client.SetUserAsync("anonymous", "Password007");
     
             var task = client.GetCurrentUserAsync();
             string responseString = await task.ContinueWith(t =>
