@@ -1,6 +1,6 @@
-﻿using AAD_Client_WP8.Resources;
+﻿using Mojio_Client_WP8.Resources;
 
-namespace AAD_Client_WP8
+namespace Mojio_Client_WP8
 {
     /// <summary>
     /// Provides access to string resources.
