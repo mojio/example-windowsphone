@@ -164,6 +164,8 @@
     <Content Include="Images\folder.png" />
     <Content Include="Images\questionmark.png" />
     <Content Include="Images\save.png" />
+    <Content Include="mojio_logo.png" />
+    <Content Include="mojio_logo_sm_sqr.png" />
   </ItemGroup>
   <ItemGroup>
     <EmbeddedResource Include="Resources\AppResources.resx">
