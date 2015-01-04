@@ -6,9 +6,9 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using AAD_Client_WP8.Resources;
+using Mojio_Client_WP8.Resources;
 
-namespace AAD_Client_WP8
+namespace Mojio_Client_WP8
 {
     public partial class App : Application
     {
