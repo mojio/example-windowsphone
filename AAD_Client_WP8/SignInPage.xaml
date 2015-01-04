@@ -22,8 +22,8 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="WP8 ACTIVE DIRECTORY TOY CLIENT" Style="{StaticResource PhoneTextNormalStyle}"/>
-            <TextBlock Text="connect" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
+            <TextBlock Text="WP8 Mojio Toy Client" Style="{StaticResource PhoneTextNormalStyle}"/>
+            <TextBlock Text="Login" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle2Style}"/>
         </StackPanel>
 
         <!--ContentPanel - place additional content here-->

@@ -16,8 +16,8 @@
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.RowDefinitions>
-            <RowDefinition Height="Auto"/>
-            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto" MinHeight="108"/>
+            <RowDefinition/>
         </Grid.RowDefinitions>
 
         <!-- LOCALIZATION NOTE:
@@ -41,14 +41,12 @@
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel x:Name="TitlePanel" Grid.Row="0" Margin="12,17,0,28">
-            <TextBlock Text="WP8 ACTIVE DIRECTORY TOY CLIENT" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
-            <TextBlock Text="get token" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-            
+            <TextBlock Text="WP8 Mojio Toy Client" Style="{StaticResource PhoneTextNormalStyle}" Margin="12,0"/>
+            <TextBlock Text="logged In" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle2Style}"/>
         </StackPanel>
 
-        
         <!--ContentPanel - place additional content here-->
-        <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
+        <Grid x:Name="ContentPanel" Margin="12,85,12,0" Grid.RowSpan="2">
             <StackPanel Name="spTOkenParamsForm" Visibility="Collapsed">
                 <TextBlock>Authority</TextBlock>
                 <TextBox Name="txtAuthority" Text="https://api.moj.io"></TextBox>
@@ -65,18 +63,18 @@
                 <TextBlock>Access Token</TextBlock>
                 <ScrollViewer Height="50">
                     <TextBox Name="txtAccess" Text="[none]" FontSize="16" FontFamily="Consolas" AcceptsReturn="True" TextWrapping="Wrap"/>
-                </ScrollViewer>                
+                </ScrollViewer>
                 <TextBlock>Refresh Token</TextBlock>
                 <ScrollViewer Height="50">
                     <TextBox Name="txtRefresh" Text="[none]" FontSize="16" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap" RenderTransformOrigin="0.499,0.719"/>
                 </ScrollViewer>
                 <TextBlock>User</TextBlock>
-                <ScrollViewer Height="130">
-                    <TextBox Name="txtUser" Text="[none]" FontSize="16" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap"/>
+                <ScrollViewer Height="150">
+                    <TextBox Name="txtUser" Text="[none]" FontSize="12" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap"/>
                 </ScrollViewer>
                 <TextBlock>Vehicles</TextBlock>
-                <ScrollViewer Height="200">
-                    <TextBox Name="txtVehicles" Text="[none]" FontSize="16" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap"/>
+                <ScrollViewer Height="250">
+                    <TextBox Name="txtVehicles" Text="[none]" FontSize="12" FontFamily="Consolas"  AcceptsReturn="True" TextWrapping="Wrap"/>
                 </ScrollViewer>
             </StackPanel>
         </Grid>
@@ -92,7 +90,7 @@
     <phone:PhoneApplicationPage.ApplicationBar>
         <shell:ApplicationBar IsVisible="True" IsMenuEnabled="False">
             <shell:ApplicationBarIconButton IconUri="/Images/copy.png" Click="Copy_Click" Text="Copy"/>
-            <shell:ApplicationBarIconButton IconUri="/Images/questionmark.png" Click="About_Click" Text="About..."/>            
+            <shell:ApplicationBarIconButton IconUri="/Images/questionmark.png" Click="About_Click" Text="About..."/>
         </shell:ApplicationBar>
     </phone:PhoneApplicationPage.ApplicationBar>
 </phone:PhoneApplicationPage>

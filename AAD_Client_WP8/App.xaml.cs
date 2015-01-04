@@ -126,7 +126,7 @@ namespace AAD_Client_WP8
             RootFrame = new PhoneApplicationFrame();
             RootFrame.Navigated += CompleteInitializePhoneApplication;
 
-            RootFrame.UriMapper = new UriMapper();
+           // RootFrame.UriMapper = new UriMapper();
 
             // Handle navigation failures
             RootFrame.NavigationFailed += RootFrame_NavigationFailed;

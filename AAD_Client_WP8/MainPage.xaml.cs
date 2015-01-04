@@ -148,7 +148,7 @@ namespace AAD_Client_WP8
         private void About_Click(object sender, EventArgs e)
         {
             WebBrowserTask task = new WebBrowserTask();
-            task.Uri = new Uri("http://www.cloudidentity.com/blog/2014/02/16/a-sample-windows-phone-8-app-getting-tokens-from-windows-azure-ad-and-adfs/");
+            task.Uri = new Uri("http://developer.moj.io");
             task.Show();
         }
        
