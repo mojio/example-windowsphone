@@ -34,51 +34,7 @@ namespace Mojio_Client_WP8
         protected async override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
             base.OnNavigatedTo(e);
-
-            
-            if (NavigationContext.QueryString.ContainsKey("fileToken"))
-            {
-                // we got called because the user clicked on a .tknrq file, contianing token request parameters
-                // copy the incoming file in local storage (we have no other way of accessing it)
-                // open the local copy
-                // parse it and assing values to the current UI
-    
-                StorageFolder folder = ApplicationData.Current.LocalFolder;
-                string filename = "tmp.tknrqlocal";
-                try
-                {
-                    await SharedStorageAccessManager.CopySharedFileAsync(folder, filename,
-                        NameCollisionOption.ReplaceExisting,
-                        NavigationContext.QueryString["fileToken"]);
-
-                    NavigationContext.QueryString.Clear();
-
-                    var file = await folder.OpenStreamForReadAsync(filename);
-                    using (StreamReader sr = new StreamReader(file))
-                    {
-                        string filetext = sr.ReadToEnd();
-                        JObject jo = JsonConvert.DeserializeObject(filetext) as JObject;
-
-                        txtAuthority.Text = (string)jo["authority"];
-                        //txtResource.Text = (string)jo["resource"];
-                        txtClientID.Text = (string)jo["clientid"];
-                        txtRedirectUri.Text = (string)jo["redirecturi"];
-                        spTOkenParamsForm.Visibility = Visibility.Visible;
-                        spResults.Visibility = Visibility.Collapsed;
-                    }
-                }
-                catch
-                {                    
-                    MessageBox.Show("Something went wrong while processing your file");
-                    spTOkenParamsForm.Visibility = Visibility.Visible;
-                    spResults.Visibility = Visibility.Collapsed;
-                }
-
-                app.Response = string.Empty;
-            }
-
-            
-            
+         
             if(app.Response==string.Empty)
             {
                 // if the app.Response is empty, that means that we need to show the UI for composing a request
@@ -110,22 +66,6 @@ namespace Mojio_Client_WP8
                     spResults.Visibility = Visibility.Collapsed;
                 }
             }            
-        }
-
-        // utility for decoding the ID token and present it in human-readable format
-        private string DecodeIdToken(string start)
-        {
-            if (start == null)
-                return "[No id_token returned]";
-            
-            string idcmp = start.Split('.')[1];
-            if ((idcmp.Length % 4) != 0)
-            {
-                idcmp = idcmp.PadRight(idcmp.Length + (4 - (idcmp.Length % 4)), '=');
-            }
-            byte[] dec = Convert.FromBase64String(idcmp);
-            JObject jo = JsonConvert.DeserializeObject(Encoding.UTF8.GetString(dec, 0, dec.Count())) as JObject;
-            return JsonConvert.SerializeObject(jo,Formatting.Indented);
         }
 
         // poor's man binding
