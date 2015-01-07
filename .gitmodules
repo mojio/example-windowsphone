@@ -1,0 +1,3 @@
+[submodule "lib/Mojio.Client"]
+	path = lib/Mojio.Client
+	url = https://github.com/mojio/Mojio.Client.git
