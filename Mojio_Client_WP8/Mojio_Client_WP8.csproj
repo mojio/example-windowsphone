@@ -205,11 +205,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\..\mojio.web\Src\Lib\Mojio.Client\Src\Mojio.Client\Mojio.Client.csproj">
+    <ProjectReference Include="..\lib\Mojio.Client\Src\Mojio.Client\Mojio.Client.csproj">
       <Project>{64b1aa53-3183-400b-82d7-dc34ca2ee35a}</Project>
       <Name>Mojio.Client</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\..\mojio.web\Src\Lib\Mojio.Client\Src\Mojio\Mojio.csproj">
+    <ProjectReference Include="..\lib\Mojio.Client\Src\Mojio\Mojio.csproj">
       <Project>{faeccbe3-5e0c-4140-90f0-ff35059673e9}</Project>
       <Name>Mojio</Name>
     </ProjectReference>
