@@ -12,5 +12,7 @@ That line will checkout all the submodules including RestSharp for the Mojio Cli
 
 Once you have obtained all the submodules, the code will build.
 
+Here's a good intro to OAuth 2: https://aaronparecki.com/articles/2012/07/29/1/oauth2-simplified
+
 Big thank you to Vittorio Bertocci who wrote the original application on which this one is based.
 Details on the orignal application are here http://www.cloudidentity.com/blog/2014/02/16/a-sample-windows-phone-8-app-getting-tokens-from-windows-azure-ad-and-adfs/.
