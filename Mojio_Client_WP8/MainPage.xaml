@@ -51,7 +51,7 @@
                 <TextBlock>Authority</TextBlock>
                 <TextBox Name="txtAuthority" Text="https://api.moj.io"></TextBox>
                 <TextBlock>ClientID</TextBlock>
-                <TextBox Name="txtClientID" Text="576f5522-9b0c-4f1a-82d4-4b4fbb7272bc"></TextBox>
+                <TextBox Name="txtClientID" Text="bcafb90b-95b5-406f-8d2a-ad2cb7401df6"></TextBox>
                 <!--<TextBlock>Resource</TextBlock>
                 <TextBox Name="txtResource" Text="Full"></TextBox>-->
                 <TextBlock>RedirectUri</TextBlock>
